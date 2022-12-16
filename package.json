@@ -1,9 +1,9 @@
 {
   "originalAuthor": "Mark Cavage <mcavage@gmail.com>",
-  "name": "ldapjs",
+  "name": "my-webpack-project",
   "homepage": "http://ldapjs.org",
-  "description": "LDAP client and server APIs",
-  "version": "2.3.3",
+  "description": "My webpack project",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -27,6 +27,10 @@
     "verror": "^1.8.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.18.2",
+    "@webpack-cli/generators": "^3.0.1",
+    "babel-loader": "^8.2.5",
     "eslint": "^7.20.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
@@ -37,19 +41,29 @@
     "highlight.js": "^11.0.1",
     "husky": "^4.2.5",
     "marked": "^4.0.0",
-    "tap": "15.2.3"
+    "tap": "15.2.3",
+    "tap-webpack-plugin": "^2.0.0",
+    "terser-webpack-plugin": "^5.3.6",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "scripts": {
     "test": "tap --no-cov -R terse",
     "test:ci": "tap --coverage-report=lcovonly -R terse",
     "test:cov": "tap -R terse",
     "test:cov:html": "tap --coverage-report=html -R terse",
+    "test:minified": "webpack && npm run test",
+    "test:minified2": "webpack && node build/test/client.test.js",
     "test:watch": "tap -n -w --no-coverage-report -R terse",
     "test:integration": "tap --no-cov -R terse 'test-integration/**/*.test.js'",
     "test:integration:local": "docker-compose up -d && npm run test:integration && docker-compose down",
     "lint": "eslint . --fix",
     "lint:ci": "eslint .",
-    "docs": "node scripts/build-docs.js"
+    "docs": "node scripts/build-docs.js",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch"
   },
   "husky": {
     "hooks": {

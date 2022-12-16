@@ -6,7 +6,7 @@ const tap = require('tap')
 const vasync = require('vasync')
 const getPort = require('get-port')
 const { getSock, uuid } = require('./utils')
-const ldap = require('../lib')
+const ldap = require('../build/test')
 const { Attribute, Change } = ldap
 
 const SUFFIX = 'dc=test'
